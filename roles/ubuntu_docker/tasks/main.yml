@@ -1,0 +1,31 @@
+---
+- name: Install Docker on Ubuntu
+  apt:
+    name: docker.io
+    state: present
+  become: true
+
+- name: Start and enable Docker service
+  service:
+    name: docker
+    state: started
+    enabled: true
+  become: true
+
+- name: Build Docker image
+  docker_image:
+    name: "test1:1.0"
+    source: build
+    build:
+      path: "/Activity11_MANGUNDAYAO/Docker"
+  become: true
+
+- name: Run Docker container
+  docker_container:
+    name: "test1_container"
+    image: "test1:1.0"
+    ports:
+      - "8080:80"
+    detach: yes
+  become: true
+

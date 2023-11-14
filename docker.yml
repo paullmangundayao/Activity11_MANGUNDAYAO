@@ -1,0 +1,9 @@
+- hosts: ubuntu_docker
+  become: true
+  roles:
+    - ubuntu_docker
+
+- hosts: centos_docker
+  become: true
+  roles:
+    - centos_docker
